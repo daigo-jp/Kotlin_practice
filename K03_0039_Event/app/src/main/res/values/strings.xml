@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">4章課題:K023C0039</string>
+    <string name="tv_name1">お名前を入力してください1</string>
+    <string name="tv_name2">お名前を入力してください2</string>
+    <string name="bt_click">表示</string>
+    <string name="bt_clear">クリア</string>
+    <string name="enp_mg">名前を入力してください</string>
+    <string name="msg2_enp">さん、こんにちは!</string>
+    <string name="msg1_enp">くん、こんにちは!</string>
+    <string name="msg_hima">くん、お暇ですね</string>
+
+
+</resources>

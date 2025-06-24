@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">5章課題:K023C0039</string>
+    <string name="dialog_title">ゲーム確認</string>
+    <string name="dialog_message">選択されたゲームをプレイします。よろしいですか</string>
+    <string name="dialog_btn_ok">プレイ</string>
+    <string name="dialog_btn_ng">キャンセル</string>
+    <string name="dialog_btn_nu">購入</string>
+    <string name="dialog_ok_toast">選択されたゲーム</string>
+    <string name="dialog_play">をプレイします</string>
+    <string name="dialog_ok_toast1">をプレイします。よろしいですか</string>
+    <string name="dialog_ng_toast">ゲームプレイをキャンセルしました</string>
+    <string name="dialog_nu_toast">このゲームを購入します</string>
+</resources>

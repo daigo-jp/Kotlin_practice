@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">6章課題:K023C0039</string>
+    <string name="label">個人情報を入力してください</string>
+    <string name="name">名前:</string>
+    <string name="name_as">フリガナ:</string>
+    <string name="mail">E-Mail:</string>
+    <string name="TEL">TEL:</string>
+    <string name="address">住所:</string>
+    <string name="date">生年月日</string>
+    <string name="year">年</string>
+    <string name="month">月</string>
+    <string name="day">日</string>
+    <string name="sex">性別:</string>
+    <string name="man">男</string>
+    <string name="woman">女</string>
+    <string name="gender">ジェンダー</string>
+    <string name="message">お問い合わせ内容を記述してください</string>
+    <string name="bt_confirm">確認</string>
+    <string name="bt_send">送信</string>
+    <string name="bt_clear">クリア</string>
+</resources>

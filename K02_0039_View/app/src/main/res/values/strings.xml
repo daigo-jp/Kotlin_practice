@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">3章課題：K023C0039</string>
+    <string name="tv_msg">お名前を入力してください</string>
+    <string name="pos_msg">郵便番号を入力してください</string>
+    <string name="phon_msg">電話番号を入力してください</string>
+    <string name="class1">1組</string>
+    <string name="class2">2組</string>
+    <string name="class3">3組</string>
+    <string name="fav_food">好きな食べ物</string>
+    <string-array name="food_list">
+        <item>好きな食べ物</item>
+        <item>寿司</item>
+        <item>ステーキ</item>
+        <item>ラーメン</item>
+        <item>うどん</item>
+        <item>ハンバーガー</item>
+    </string-array>
+    <string name="bt_save">送信</string>
+    <string-array name="rec_do">
+        <item>早めの就活</item>
+        <item>早めのがくちか探し</item>
+        <item>自己勉強</item>
+        <item>製作物の作成</item>
+        <item>企業調べ</item>
+        <item>本を読む</item>
+        <item>早寝早起き</item>
+        <item>規則正しい食生活</item>
+        <item>適度な運動</item>
+        <item>旅行</item>
+    </string-array>
+
+</resources>
