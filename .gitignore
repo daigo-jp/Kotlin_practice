@@ -1,0 +1,26 @@
+# Kotlin/Java IDE関連
+.idea/
+*.iml
+
+# ビルド系
+build/
+out/
+
+# OSやエディタ関連
+.DS_Store
+*.swp
+
+# Gradleキャッシュやロックファイル
+.gradle/
+**/build/
+**/.gradle/
+!gradle/wrapper/gradle-wrapper.jar
+.gradle/
+build/
+
+# Android特有（使ってるなら）
+.cxx/
+local.properties
+
+# その他
+*.log
