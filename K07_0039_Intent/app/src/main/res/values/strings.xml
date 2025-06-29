@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">第7章課題:K023C0039</string>
+    <string name="tv_name">名前:</string>
+    <string name="tv_HaveMoney">所持金:</string>
+    <string name="bt_game_store">ゲーム屋</string>
+    <string name="bt_seven_store">セブン</string>
+    <string name="bank">銀行</string>
+    <string name="shop">ショップ</string>
+    <string name="seven_shop">セブンショップ</string>
+    <string name="game_shop">ゲームショップ</string>
+    <string name="bt_return">最初の画面に戻る</string>
+    <string name="conf_text_false">所持金がたりません。</string>
+    <string name="conf_text_True">ご購入ありがとうございます。</string>
+    <string name="drawer">引き出し</string>
+    <string name="confirm">確認</string>
+    <string name="back">戻る</string>
+    <string name="list_back">リストに戻る</string>
+    <string name="bank_message">円引き出しました</string>
+    <string name="error_message">正の整数値を入力してください</string>
+</resources>
