@@ -18,9 +18,7 @@
         <activity
             android:name=".Game_Confirm"
             android:exported="false" />
-        <activity
-            android:name=".Seven_Confirm"
-            android:exported="false" />
+
         <activity
             android:name=".GameStoreActivity"
             android:exported="false" />

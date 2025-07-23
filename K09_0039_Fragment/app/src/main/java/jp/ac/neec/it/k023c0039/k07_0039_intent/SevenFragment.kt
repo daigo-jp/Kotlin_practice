@@ -16,7 +16,6 @@ class SevenFragment : Fragment(R.layout.fragment_seven) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // argumentsからデータを受け取るように変更
         val hasMoney = arguments?.getInt("money", 0) ?: 0
         val textViewHasMoney = view.findViewById<TextView>(R.id.has_money)
         textViewHasMoney.text = hasMoney.toString()
@@ -60,24 +59,35 @@ class SevenFragment : Fragment(R.layout.fragment_seven) {
             bundle.putInt("hasMoney", hasMoney)
             confirmFragment.arguments = bundle
 
+            // このフラグメントをホストしているActivityがnullでなければ、中の処理を実行
             activity?.let {
-
+                // Fragmentの操作（トランザクション）を開始
                 val tranzaction = parentFragmentManager.beginTransaction()
+                // Fragmentの置き換え順序を最適化する設定（パフォーマンス向上）
                 tranzaction.setReorderingAllowed(true)
-                val fragmentMainContainer= it.findViewById<View>(R.id.fragment_container_seven)
-                if(fragmentMainContainer != null){
+
+                // 通常スクリーン用のコンテナ（fragment_container_seven）があるか探す
+                val fragmentMainContainer = it.findViewById<View>(R.id.fragment_container_seven)
+
+                // コンテナの有無で、通常スクリーンかラージスクリーンかを判断
+                if (fragmentMainContainer != null) {
+                    //【通常スクリーンの場合】
+                    // 現在の状態をバックスタック（履歴）に追加。これにより「戻る」ボタンでこの画面に戻れる
                     tranzaction.addToBackStack("Only List")
+                    // fragment_container_seven の中身を、SevenFragmentConfirm に置き換える
+                    // 同時に、bundleに入ったデータを新しいFragmentに渡す
                     tranzaction.replace(
                         R.id.fragment_container_seven,
                         SevenFragmentConfirm::class.java,
                         bundle
                     )
+                } else {
+                    //【ラージスクリーンの場合】
+                    // fragmentConfirmContainerの中身を SevenFragmentConfirm に置き換える
+                    tranzaction.replace(R.id.fragmentConfirmContainer, SevenFragmentConfirm::class.java, bundle)
                 }
-                else{
-                    tranzaction.replace(R.id.fragmentConfirmContainer,SevenFragmentConfirm::class.java, bundle)
-                }
+                // トランザクションを確定し、画面の変更を適用する
                 tranzaction.commit()
-
             }
         }
     }
