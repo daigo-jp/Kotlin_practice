@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">K10_0039_DB</string>
+    <string name="app_name">10章課題:K023C0039</string>
+    <string name="store_name">セブンイレブン</string>
+    <string name="btn_config">コンフィグ画面へ</string>
+    <string name="tv_configtitle">セブンイレブンのアイテム設定</string>
+    <string name="tv_name">名前:</string>
+    <string name="tv_price">価格:</string>
+    <string name="btn_add">保存</string>
+    <string name="btn_back">ショップ画面へ</string>
 </resources>
