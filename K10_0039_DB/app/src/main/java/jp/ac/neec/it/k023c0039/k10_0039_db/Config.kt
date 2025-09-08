@@ -33,25 +33,38 @@ class Config : AppCompatActivity() {
             return
         }
         if (price == null) {
-            // 【価格が未入力の場合】→ 削除処理
+            // 削除処理
             val sqlDelete = "DELETE FROM ItemList WHERE name = ?"
             val stmt = db.compileStatement(sqlDelete)
             stmt.bindString(1, name)
             stmt.executeUpdateDelete()
-
         } else {
-            // 【価格が入力されている場合】→ 登録処理
-            val sqlInsert = "INSERT INTO ItemList (name, price) VALUES (?, ?)"
-            val stmt = db.compileStatement(sqlInsert)
-            stmt.bindString(1, name)
-            stmt.bindLong(2, price.toLong())
-            stmt.executeInsert()
+            // 更新処理を試す
+            val sqlUpdate = "UPDATE ItemList SET price = ? WHERE name = ?"
+            val stmtUpdate = db.compileStatement(sqlUpdate)
+            stmtUpdate.bindLong(1, price.toLong())
+            stmtUpdate.bindString(2, name)
+            val rowsAffected = stmtUpdate.executeUpdateDelete()
+
+            if (rowsAffected == 0) {
+                // 該当行がなければ新規登録
+                val sqlInsert = "INSERT INTO ItemList (name, price) VALUES (?, ?)"
+                val stmtInsert = db.compileStatement(sqlInsert)
+                stmtInsert.bindString(1, name)
+                stmtInsert.bindLong(2, price.toLong())
+                stmtInsert.executeInsert()
+            }
         }
+
 
 
 
     }
     fun OnBackButtonClick(view: View){
         finish()
+    }
+    override fun onDestroy() {
+        _helper.close()
+        super.onDestroy()
     }
 }
