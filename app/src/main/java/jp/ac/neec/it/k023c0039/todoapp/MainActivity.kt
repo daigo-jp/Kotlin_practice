@@ -12,36 +12,63 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import jp.ac.neec.it.k023c0039.todoapp.ui.theme.ToDoappTheme
+import androidx.compose.foundation.layout.Column // Columnを使うため
+import androidx.compose.material3.Button // Buttonを使うため
+import androidx.compose.ui.Alignment // Alignment.CenterHorizontallyを使うため
+import androidx.compose.foundation.layout.Arrangement // Arrangement.Centerを使うため
+import androidx.compose.ui.unit.sp // sp（Scaled Pixels）を使うため
+import androidx.compose.ui.unit.dp // dp（Density-independent Pixels）を使うため
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            // ここは元のコードのまま
             ToDoappTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
+
+                // 変更点：ScaffoldとinnerPaddingの処理を削除し、Columnで置き換える
+                Column(
+                    // 画面全体の中央に配置
+                    modifier = Modifier.fillMaxSize(),
+                    horizontalAlignment = Alignment.CenterHorizontally, // 横方向の中央揃え
+                    verticalArrangement = Arrangement.Center // 縦方向の中央揃え
+                ) {
+                    // 1. テキストを表示
+                    Text(
+                        text = "Composeの学習を始めよう！",
+                        // spを使うためには、import androidx.compose.ui.unit.sp が必要
+                        fontSize = 20.sp,
+                        // dpを使うためには、import androidx.compose.ui.unit.dp が必要
+                        modifier = Modifier.padding(bottom = 16.dp)
                     )
+
+                    // 2. ボタンを配置
+                    Button(
+                        onClick = {
+                            println("ボタンが押されました！")
+                        }
+                    ) {
+                        // ボタンの中に表示するテキスト
+                        Text("クリック！")
+                    }
                 }
             }
         }
     }
 }
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun DefaultPreview() {
     ToDoappTheme {
-        Greeting("Android")
+        // ここは元のコードのまま
+        Scaffold {
+            Text(
+                text = "Composeの学習を始めよう！",
+                modifier = Modifier.padding(it)
+            )
+        }
     }
 }
+
+
