@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import jp.ac.neec.it.k023c0039.todoapp.ui.theme.ToDoappTheme
 import androidx.compose.foundation.layout.Column // Columnを使うため
@@ -18,57 +17,106 @@ import androidx.compose.ui.Alignment // Alignment.CenterHorizontallyを使うた
 import androidx.compose.foundation.layout.Arrangement // Arrangement.Centerを使うため
 import androidx.compose.ui.unit.sp // sp（Scaled Pixels）を使うため
 import androidx.compose.ui.unit.dp // dp（Density-independent Pixels）を使うため
-
+import androidx.compose.material3.Scaffold // Scaffoldを使うため
+import androidx.compose.material3.TopAppBar // TopAppBarを使うため
+import androidx.compose.material3.ExperimentalMaterial3Api // TopAppBarを使うために必要
+import androidx.compose.foundation.layout.Row // Rowを使うため
+import androidx.compose.foundation.layout.fillMaxWidth // fillMaxWidthを使うため
+import androidx.compose.foundation.layout.padding // paddingを使うため
+import androidx.compose.foundation.layout.Column // Columnを使うため
+import androidx.compose.ui.Modifier // Modifierを使うため
+import androidx.compose.ui.unit.dp // dpを使うため
+import androidx.compose.material3.TopAppBar // TopAppBarを使うため
+import androidx.compose.material3.Text // Textを使うため
+@OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        // MainActivity.kt の setContent ブロック内
+
         setContent {
-            // ここは元のコードのまま
+            // 既存のテーマ
             ToDoappTheme {
-
-                // 変更点：ScaffoldとinnerPaddingの処理を削除し、Columnで置き換える
-                Column(
-                    // 画面全体の中央に配置
-                    modifier = Modifier.fillMaxSize(),
-                    horizontalAlignment = Alignment.CenterHorizontally, // 横方向の中央揃え
-                    verticalArrangement = Arrangement.Center // 縦方向の中央揃え
-                ) {
-                    // 1. テキストを表示
-                    Text(
-                        text = "Composeの学習を始めよう！",
-                        // spを使うためには、import androidx.compose.ui.unit.sp が必要
-                        fontSize = 20.sp,
-                        // dpを使うためには、import androidx.compose.ui.unit.dp が必要
-                        modifier = Modifier.padding(bottom = 16.dp)
-                    )
-
-                    // 2. ボタンを配置
-                    Button(
-                        onClick = {
-                            println("ボタンが押されました！")
-                        }
-                    ) {
-                        // ボタンの中に表示するテキスト
-                        Text("クリック！")
-                    }
+                // Scaffoldを導入
+                Scaffold(
+                    // 1. トップバーの設定
+                    topBar = {
+                        // TopAppBar（Android Developersで推奨されるトップバー）
+                        TopAppBar(
+                            title = {
+                                Text("My Compose ToDo") // アプリ名
+                            }
+                        )
+                    },
+                    modifier = Modifier.fillMaxSize()
+                ) { innerPadding ->
+                    // 2. メインコンテンツの配置（次のステップでTaskListを配置）
+                    // innerPaddingを使って、TopAppBarに隠れないように余白を確保します
+                    MainContent(Modifier.padding(innerPadding))
                 }
             }
         }
     }
 }
-@Preview(showBackground = true)
+// MainActivity.kt の class MainActivity { ... } の外側
+
 @Composable
-fun DefaultPreview() {
-    ToDoappTheme {
-        // ここは元のコードのまま
-        Scaffold {
-            Text(
-                text = "Composeの学習を始めよう！",
-                modifier = Modifier.padding(it)
-            )
-        }
+fun MainContent(modifier: Modifier = Modifier) {
+    // Columnを使って、要素を縦に（上から順に）並べる
+    Column(modifier = modifier.fillMaxSize()) {
+
+        // 1. タスク入力エリア（仮置き）
+        TaskInputArea()
+
+        // 2. タスクリスト表示エリア（仮置き）
+        TaskList()
     }
 }
 
+// タスク入力エリアの仮コンポーザブル
+@Composable
+fun TaskInputArea() {
+    // Row（横並び）を使って、入力フィールドとボタンを並べることを想定
+    Row(
+        modifier = Modifier
+            .fillMaxWidth() // 横幅いっぱいに広げる
+            .padding(16.dp) // 外側に余白
+    ) {
+        Text(text = "新しいタスクを入力...", modifier = Modifier.weight(1f)) // 重み(weight)で領域を広げる
+        // ここに後で TextField と Button が入ります
+    }
+}
+
+// タスクリスト表示エリアの仮コンポーザブル
+@Composable
+fun TaskList() {
+    // LazyColumnは、大量のアイテムを効率的に表示するためのリストコンポーザブル
+    // この中に実際のタスクアイテムが縦に並びます
+    Column(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
+        Text("--- 実際のタスクリスト ---")
+        // ここに後でタスクアイテム（TaskItem）が繰り返し表示されます
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+@OptIn(ExperimentalMaterial3Api::class)
+fun TodoAppLayoutPreview() {
+    ToDoappTheme {
+        // MainActivityのsetContentブロックとほぼ同じ内容を定義
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    title = {
+                        Text("My Compose ToDo")
+                    }
+                )
+            },
+            modifier = Modifier.fillMaxSize()
+        ) { innerPadding ->
+            MainContent(Modifier.padding(innerPadding))
+        }
+    }
+}
 
